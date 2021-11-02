@@ -31,10 +31,12 @@ function fillTemplateFilename(weekIndex: number): string {
 
 function fillTemplateContent(templateContent: string, weekIndex: number): string {
   const weekRange = getWeekRange(new Date());
+  let dayIndex = 0;
 
   return templateContent
     .replace('{NN}', formatWeekIndex(weekIndex))
-    .replace('{YYYY-MM-DD} - {YYYY-MM-DD}', `${formatDate(weekRange[0])} - ${formatDate(weekRange[4])}`);
+    .replace('{YYYY-MM-DD} - {YYYY-MM-DD}', `${formatDate(weekRange[0])} - ${formatDate(weekRange[4])}`)
+    .replaceAll('{YYYY-MM-DD}', () => formatDate(weekRange[dayIndex++]));
 }
 
 async function createJournalFromTemplate(templatePath: string): Promise<void> {

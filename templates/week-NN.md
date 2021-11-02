@@ -5,7 +5,7 @@ todo:
 
 ## Monday, {YYYY-MM-DD}
 
-- [ ] planning <- {HH:MM}
+- [ ] planning <- 10:00
 - [ ] rotate journals
 
 ## Tuesday, {YYYY-MM-DD}
@@ -24,9 +24,9 @@ todo:
 
 ## Thursday, {YYYY-MM-DD}
 
-- [ ] demo <- {HH:MM}
-- [ ] retro <- {HH:MM}
+- [ ] demo <- 09:30
+- [ ] retro <- 10:30
 
 ## Friday, {YYYY-MM-DD}
 
-- [ ] design review <- {HH:MM}
+- [ ] design review <- 14:00
