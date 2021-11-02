@@ -22,7 +22,7 @@ todo:
   - [ ] discuss
   - [ ] merge
 
-## Thursday , {YYYY-MM-DD}
+## Thursday, {YYYY-MM-DD}
 
 - [ ] demo <- {HH:MM}
 - [ ] retro <- {HH:MM}

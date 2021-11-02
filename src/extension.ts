@@ -1,6 +1,8 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
 
+import { getWeekRange, formatDate } from './date-utils';
+
 const templateFolder = 'templates'; // inside extension codebase
 const templateFilename = 'week-NN.md';
 const targetFolder = 'journals'; // inside user's workspace
@@ -28,8 +30,11 @@ function fillTemplateFilename(weekIndex: number): string {
 }
 
 function fillTemplateContent(templateContent: string, weekIndex: number): string {
+  const weekRange = getWeekRange(new Date());
+
   return templateContent
-    .replace('{NN}', formatWeekIndex(weekIndex));
+    .replace('{NN}', formatWeekIndex(weekIndex))
+    .replace('{YYYY-MM-DD} - {YYYY-MM-DD}', `${formatDate(weekRange[0])} - ${formatDate(weekRange[4])}`);
 }
 
 async function createJournalFromTemplate(templatePath: string): Promise<void> {

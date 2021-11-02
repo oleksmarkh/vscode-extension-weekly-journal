@@ -1,7 +1,7 @@
 # vscode-extension-weekly-journal
 
 A simple VS Code extension for keeping weekly logs in Markdown format.
-It fills repetitive placeholders in a weekly log template.
+It fills repetitive placeholders (week numbers and dates) in a weekly log template.
 
 ## Local dev setup
 
