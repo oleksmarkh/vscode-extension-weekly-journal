@@ -3,6 +3,8 @@
 A simple VS Code extension for keeping weekly logs in Markdown format.
 It fills repetitive placeholders (week numbers and dates) in a weekly log template.
 
+<img width="512" src="https://user-images.githubusercontent.com/2470363/139927501-3c979c5e-a9d3-4948-910b-eb28aa769126.gif" />
+
 ## Local dev setup
 
 ```bash
