@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import * as textstat from 'text-readability';
 
 import { getWeekRange, formatDate } from './date-utils';
 
@@ -42,7 +43,7 @@ function fillTemplateContent(templateContent: string, weekIndex: number): string
 async function createJournalFromTemplate(templatePath: string): Promise<void> {
   if (!vscode.workspace.workspaceFolders) {
     vscode.window.showWarningMessage(
-      `Please open some folder, so weekly logs could be stored under "${targetFolder}/" inside.`,
+      `A folder needs to be open, so weekly logs could be stored under "./${targetFolder}/".`,
     );
     return;
   }
@@ -69,6 +70,25 @@ async function createJournalFromTemplate(templatePath: string): Promise<void> {
   await vscode.window.showTextDocument(targetUri);
 }
 
+async function showReadabilityScore(): Promise<void> {
+  const editor = vscode.window.activeTextEditor;
+
+  if (!editor) {
+    vscode.window.showWarningMessage(
+      'A file needs to be open, so text stats could be retrieved.',
+    );
+    return;
+  }
+
+  const text = editor.document.getText();
+  const wordCount = textstat.lexiconCount(text, true);
+  const consensusScore = textstat.textStandard(text, false);
+
+  vscode.window.showInformationMessage(
+    `Number of words: ${wordCount}, readability score: ${consensusScore}.`,
+  );
+}
+
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
     vscode.commands.registerCommand(
@@ -76,6 +96,13 @@ export function activate(context: vscode.ExtensionContext): void {
       () => createJournalFromTemplate(
         context.asAbsolutePath(path.join(templateFolder, templateFilename)),
       ),
+    ),
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      'weekly-journal.weeklyJournal.show-readability-score',
+      showReadabilityScore,
     ),
   );
 }
